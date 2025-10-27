@@ -26,6 +26,11 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
+
+  void getNext() {
+    current = WordPair.random();
+    notifyListeners();
+  }
 }
 
 class MyHomePage extends StatelessWidget {
@@ -38,6 +43,15 @@ class MyHomePage extends StatelessWidget {
         children: [
           Text('A  AWESOME random idea:'),
           Text(appState.current.asLowerCase),
+          ElevatedButton(
+            onPressed: () {
+              // appState.current = WordPair.random();
+              // appState.notifyListeners();
+              //print('button pressed');
+              appState.getNext();
+            },
+            child: Text('Next'),
+          ),
         ],
       ),
     );
